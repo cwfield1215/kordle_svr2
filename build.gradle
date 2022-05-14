@@ -1,0 +1,56 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:2.2.0'
+    }
+}
+plugins {
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'org.bmchsd.cwfield'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+
+	// For Client
+    implementation 'com.google.code.gson:gson:2.9.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// apply plugin: 'war'
+// apply plugin: 'com.google.cloud.tools.appengine'
+
+// appengine {  // App Engine tasks configuration
+//     deploy {   // deploy configuration
+//         //projectId = 'GCLOUD_CONFIG' // gcloud config set project
+// 		projectId = 'cwfield-kordle'
+//         version = 'GCLOUD_CONFIG'   // gcloud to generate a version
+//     }
+// }
+
+// jar {
+//     manifest {
+//         attributes(
+//                 'Main-Class': 'org.bmchsd.cwfield.kordle_svr.KordleServerApplication'
+//         )
+//     }
+// }
