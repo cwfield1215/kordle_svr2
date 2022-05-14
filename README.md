@@ -32,6 +32,6 @@ Password: ""
 If you want the DB to be retained, avoid Cloud Run "cold starts" by going to the Google Cloud Console and doing "Edit & Deploy New Version" setting the min instances to 1. Turn this off when you're not using it to save money.
 
 ## References
-https://www.bezkoder.com/spring-boot-jpa-h2-example/
-https://medium.com/google-cloud/3-solutions-to-mitigate-the-cold-starts-on-cloud-run-8c60f0ae7894
+- https://www.bezkoder.com/spring-boot-jpa-h2-example/
+- https://medium.com/google-cloud/3-solutions-to-mitigate-the-cold-starts-on-cloud-run-8c60f0ae7894
 
