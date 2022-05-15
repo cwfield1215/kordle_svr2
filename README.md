@@ -34,4 +34,5 @@ If you want the DB to be retained, avoid Cloud Run "cold starts" by going to the
 ## References
 - https://www.bezkoder.com/spring-boot-jpa-h2-example/
 - https://medium.com/google-cloud/3-solutions-to-mitigate-the-cold-starts-on-cloud-run-8c60f0ae7894
+- https://www.netsurfingzone.com/jpa/how-to-write-custom-method-in-repository-in-spring-data-jpa/
 
