@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.bmchsd.cwfield.kordle_svr.model.KordleResult;
@@ -42,5 +43,20 @@ public class KordleController {
         logger.info("Inside saveResult()");
         resultService.saveOrUpdate(result);  
         return result.getId();  
-    }  
+    } 
+    
+    @GetMapping("/leaderboard")  
+    private String getLeaderBoard()   
+    {  
+        logger.info("Inside getLeaderBoard()");
+        List<KordleResult> results = resultService.getLeaderBoard(); 
+        String reply = "";
+        for (KordleResult res : results) {
+            reply = reply + 
+                res.getUser() + "," +
+                res.getNumTries() + "," +
+                res.getTimeMillis() + "\n";
+        } 
+        return reply;
+    } 
 }

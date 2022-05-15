@@ -37,5 +37,9 @@ public class KordleService
     {  
         resultRepository.deleteById(id);  
     }  
+
+    public List<KordleResult> getLeaderBoard() {
+        return resultRepository.getLeaderboard();
+    }
 }  
 
