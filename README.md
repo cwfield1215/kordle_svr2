@@ -17,6 +17,9 @@ To deploy/run in Cloud Run:
 gcloud run deploy
 ```
 
+You can mostly use the defaults when prompted, but the service name should be 'kordle-svr' and the region should be 'us-east1'.
+
+
 To see the data, navigate to:
 ```
 http(s)://{host}:{port}/h2-console
