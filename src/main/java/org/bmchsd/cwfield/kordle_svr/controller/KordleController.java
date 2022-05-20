@@ -51,11 +51,11 @@ public class KordleController {
         logger.info("Inside getLeaderBoard()");
         List<KordleResult> results = resultService.getLeaderBoard(); 
         String reply = "";
-        for (KordleResult res : results) {
-            reply = reply + 
-                res.getUser() + "," +
-                res.getNumTries() + "," +
-                res.getTimeMillis() + "\n";
+        for (int i = 0; i<10&&i<results.size(); i++){
+                reply = reply + 
+                results.get(i).getUser() + "," +
+                results.get(i).getNumTries() + "," +
+                results.get(i).getTimeMillis() + "\n";
         } 
         return reply;
     } 
