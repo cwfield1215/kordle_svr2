@@ -9,7 +9,7 @@ import java.net.URL;
 
 import com.google.gson.JsonObject;
 
-
+// TO DO Add a client call for other service entry points
 
 public class KordleClient {
     public static void main(String[] args) {
