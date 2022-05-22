@@ -33,6 +33,17 @@ public class KordleResult {
         this.outcome = outcome;
     }
 
+    @Override
+    public String toString() {
+        return "KordleResult{" +
+                "id=" + id +
+                ", user='" + user + '\'' +
+                ", timeMillis=" + timeMillis +
+                ", numTries=" + numTries +
+                ", outcome='" + outcome + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }
