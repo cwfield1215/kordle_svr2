@@ -5,12 +5,7 @@ import java.util.List;
 import java.util.logging.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import org.bmchsd.cwfield.kordle_svr.model.KordleResult;
 import org.bmchsd.cwfield.kordle_svr.service.KordleService;
@@ -41,22 +36,45 @@ public class KordleController {
     private int saveResult(@RequestBody KordleResult result)   
     {  
         logger.info("Inside saveResult()");
+        logger.info(result.toString());
+        //log values from post
         resultService.saveOrUpdate(result);  
         return result.getId();  
     } 
     
-    @GetMapping("/leaderboard")  
-    private String getLeaderBoard()   
-    {  
+
+    //spring boot request parameter, path variable (optional)
+    //@GetMapping("/leaderboard")
+    @RequestMapping(value = {"/leaderboard", "/leaderboard/{reqItems}"})
+    private String getLeaderBoard(@PathVariable(required = false) Integer reqItems){
+        int items;
+        if(reqItems==null){
+            items = 10;
+        }else{
+            items = reqItems.intValue();
+        }
         logger.info("Inside getLeaderBoard()");
         List<KordleResult> results = resultService.getLeaderBoard(); 
         String reply = "";
-        for (int i = 0; i<10&&i<results.size(); i++){
-                reply = reply + 
-                results.get(i).getUser() + "," +
-                results.get(i).getNumTries() + "," +
-                results.get(i).getTimeMillis() + "\n";
+        //convert millis to minutes and seconds
+
+        for (int i = 0; i<items&&i<results.size(); i++){
+            long millis = results.get(i).getTimeMillis();
+             reply = reply + results.get(i).getUser() + "," +
+                     results.get(i).getNumTries() + "," +
+                     millisToMinSec(millis)+ "\n";
         } 
         return reply;
-    } 
+    }
+    private String millisToMinSec(long millis) {
+        long minutes = millis/60000;
+        millis -=minutes*60000;
+        long seconds = millis/1000;
+        millis -=seconds*1000;
+        String secondsString = String.valueOf(seconds);
+        if (seconds<10){
+            secondsString = "0" + secondsString;
+        }
+        return minutes + ":"+ secondsString;
+    }
 }
